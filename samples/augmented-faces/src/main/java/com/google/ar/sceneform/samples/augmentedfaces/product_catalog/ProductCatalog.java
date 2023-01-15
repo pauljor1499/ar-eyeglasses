@@ -8,7 +8,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.PopupMenu;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,11 +25,13 @@ import com.nex3z.notificationbadge.NotificationBadge;
 public class ProductCatalog extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener, View.OnClickListener {
 
     public static NotificationBadge catalog_badge;
+    public static CardView item5;
 
     private ProductList prod_list = new ProductList();
-    private CardView item1, item2, item3, item4, item5;
+    private CardView item1, item2, item3, item4;
     private ImageButton cartIcon, menuOption;
     private Intent intent;
+    private LinearLayout empty_space;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +55,9 @@ public class ProductCatalog extends AppCompatActivity implements PopupMenu.OnMen
         item4 = (CardView) findViewById(R.id.card_4);
         item5 = (CardView) findViewById(R.id.card_5);
 
+        empty_space = (LinearLayout) findViewById(R.id.catalog_linearlayout);
+
+        item5.setVisibility(View.GONE);
 
         item1.setOnClickListener(this);
         item2.setOnClickListener(this);
@@ -63,6 +70,13 @@ public class ProductCatalog extends AppCompatActivity implements PopupMenu.OnMen
             public void onClick(View v) {
                 intent = new Intent(ProductCatalog.this, CartActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        empty_space.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                item5.setVisibility(View.VISIBLE);
             }
         });
 
@@ -134,7 +148,6 @@ public class ProductCatalog extends AppCompatActivity implements PopupMenu.OnMen
     }
 
 
-
     @Override
     public boolean onMenuItemClick(MenuItem menuItem) {
         switch (menuItem.getItemId()){
@@ -177,4 +190,10 @@ public class ProductCatalog extends AppCompatActivity implements PopupMenu.OnMen
                 return false;
         }
     }
+
+    public void show_item5(){
+        Toast.makeText(ProductCatalog.this, "Sign in Successfully!", Toast.LENGTH_SHORT).show();
+//        item5.setVisibility(View.VISIBLE);
+    }
+
 }

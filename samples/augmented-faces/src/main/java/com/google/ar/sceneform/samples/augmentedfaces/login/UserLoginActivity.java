@@ -8,17 +8,20 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.ar.sceneform.samples.augmentedfaces.R;
 import com.google.ar.sceneform.samples.augmentedfaces.product_catalog.ProductCatalog;
 import com.google.ar.sceneform.samples.augmentedfaces.product_catalog2.ProductCatalog2;
 
+
 public class UserLoginActivity extends AppCompatActivity {
 
     EditText username,password;
     Button btnlogin, btnregistration;
     DBHelper DB;
+    ImageView login_logo;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -29,6 +32,7 @@ public class UserLoginActivity extends AppCompatActivity {
         username = (EditText) findViewById(R.id.username1);
         password = (EditText) findViewById(R.id.password1);
         btnlogin = (Button) findViewById(R.id.btnsignin1);
+        login_logo = (ImageView) findViewById(R.id.my_login_logo);
         btnregistration = (Button) findViewById(R.id.bttn_to_register);
         DB = new DBHelper(this);
 

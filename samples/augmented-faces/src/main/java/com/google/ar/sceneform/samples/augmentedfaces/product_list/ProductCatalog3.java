@@ -18,7 +18,6 @@ import androidx.cardview.widget.CardView;
 
 import com.google.ar.sceneform.samples.augmentedfaces.R;
 import com.google.ar.sceneform.samples.augmentedfaces.cart.CartActivity;
-import com.google.ar.sceneform.samples.augmentedfaces.login.UserLoginActivity;
 import com.google.ar.sceneform.samples.augmentedfaces.product.service.ProductList;
 import com.nex3z.notificationbadge.NotificationBadge;
 import com.google.ar.sceneform.samples.augmentedfaces.product_catalog2.ProductCatalog2;
