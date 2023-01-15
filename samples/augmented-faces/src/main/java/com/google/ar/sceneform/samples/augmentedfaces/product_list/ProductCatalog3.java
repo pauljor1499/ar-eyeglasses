@@ -1,5 +1,6 @@
-package com.google.ar.sceneform.samples.augmentedfaces.product_catalog2;
+package com.google.ar.sceneform.samples.augmentedfaces.product_list;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,7 +8,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
 
@@ -18,11 +18,9 @@ import androidx.cardview.widget.CardView;
 import com.google.ar.sceneform.samples.augmentedfaces.R;
 import com.google.ar.sceneform.samples.augmentedfaces.cart.CartActivity;
 import com.google.ar.sceneform.samples.augmentedfaces.product.service.ProductList;
-import com.google.ar.sceneform.samples.augmentedfaces.product_view.ProductView;
 import com.nex3z.notificationbadge.NotificationBadge;
-import com.google.ar.sceneform.samples.augmentedfaces.product_list.ProductCatalog3;
 
-public class ProductCatalog2 extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener, View.OnClickListener {
+public class ProductCatalog3 extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener, View.OnClickListener {
 
     public static NotificationBadge catalog_badge;
 
@@ -30,12 +28,12 @@ public class ProductCatalog2 extends AppCompatActivity implements PopupMenu.OnMe
     private CardView item1, item2, item3, item4, item5;
     private ImageButton cartIcon, menuOption;
     private Intent intent;
-    private Button bttn_add;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_product_catalog2);
+        setContentView(R.layout.activity_product_catalog3);
 
         //hide on-screen bottom navigation
         getWindow().getDecorView().setSystemUiVisibility(
@@ -51,33 +49,15 @@ public class ProductCatalog2 extends AppCompatActivity implements PopupMenu.OnMe
         item1 = (CardView) findViewById(R.id.card_1);
         item2 = (CardView) findViewById(R.id.card_2);
         item3 = (CardView) findViewById(R.id.card_3);
-        item4 = (CardView) findViewById(R.id.card_4);
-        item5 = (CardView) findViewById(R.id.card_5);
-        bttn_add = (Button) findViewById(R.id.bttn_add_new);
-
-        item5.setVisibility(View.GONE);
 
         item1.setOnClickListener(this);
         item2.setOnClickListener(this);
         item3.setOnClickListener(this);
-        item4.setOnClickListener(this);
-        item5.setOnClickListener(this);
 
         cartIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                intent = new Intent(ProductCatalog2.this, CartActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        bttn_add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                item5.setVisibility(View.GONE);
-//                item5.setVisibility(View.VISIBLE);
-
-                intent = new Intent(ProductCatalog2.this, ProductCatalog3.class);
+                intent = new Intent(ProductCatalog3.this, CartActivity.class);
                 startActivity(intent);
             }
         });
@@ -95,50 +75,11 @@ public class ProductCatalog2 extends AppCompatActivity implements PopupMenu.OnMe
     public void onClick(View v) {
 
         if (v.getId() == R.id.card_1) {
-            intent = new Intent(this, ProductView.class);
-            intent.putExtra("LABEL", "RAY-BAN WAYFARER");
-            intent.putExtra("PRICE", "₱599.99");
-            intent.putExtra("WEIGHT", "Black/Blue/Green");
-            intent.putExtra("DETAILS", "Ray-Ban Wayfarer are the new Retro Wingtip design. This updated classic has glossy black finish and classic blue and green color details. If you love Ray-Ban but need a smaller frame, this is the perfect option for you.");
-            intent.putExtra("IMAGE", R.drawable.model_1_black);
-            startActivity(intent);
 
         } else if (v.getId() == R.id.card_2) {
-            intent = new Intent(this, ProductView.class);
-            intent.putExtra("LABEL", "BOSE FRAMES");
-            intent.putExtra("PRICE", "₱499.99");
-            intent.putExtra("WEIGHT", "Black/Blue/Green");
-            intent.putExtra("DETAILS", "Bose Frames are the new Retro Wingtip design. This updated classic has glossy black finish and classic blue and green color details. If you love Bose Frames but need a smaller frame, this is the perfect option for you.");
-            intent.putExtra("IMAGE", R.drawable.model_2_black);
-            startActivity(intent);
 
         } else if (v.getId() == R.id.card_3) {
-            intent = new Intent(this, ProductView.class);
-            intent.putExtra("LABEL", "VINTAGE WIRE ROUND RIM GLASSES");
-            intent.putExtra("PRICE", "₱799.99");
-            intent.putExtra("WEIGHT", "Black/Blue/Green");
-            intent.putExtra("DETAILS", "VINTAGE WIRE ROUND RIM GLASSES are the new Retro Wingtip design. This updated classic has glossy black finish and classic blue and green color details. If you love Bose Frames but need a smaller frame, this is the perfect option for you.");
-            intent.putExtra("IMAGE", R.drawable.model_3_black);
-            startActivity(intent);
 
-        } else if (v.getId() == R.id.card_4) {
-            intent = new Intent(this, ProductView.class);
-            intent.putExtra("LABEL", "VERSACE G LONDON");
-            intent.putExtra("PRICE", "₱886.80");
-            intent.putExtra("WEIGHT", "Black/Blue/Green");
-            intent.putExtra("DETAILS", "VERSACE G LONDON are the new Retro Wingtip design. This updated classic has glossy black finish and classic blue and green color details. If you love Bose Frames but need a smaller frame, this is the perfect option for you.");
-            intent.putExtra("IMAGE", R.drawable.model_4_black);
-            startActivity(intent);
-
-
-        } else if (v.getId() == R.id.card_5) {
-            intent = new Intent(this, ProductView.class);
-            intent.putExtra("LABEL", "ERMENEGILDO ZEGNA");
-            intent.putExtra("PRICE", "₱756.80");
-            intent.putExtra("WEIGHT", "Black/Blue/Green");
-            intent.putExtra("DETAILS", "ERMENEGILDO ZEGNA are the new Retro Wingtip design. This updated classic has glossy black finish and classic blue and green color details. If you love Bose Frames but need a smaller frame, this is the perfect option for you.");
-            intent.putExtra("IMAGE", R.drawable.model_5_black);
-            startActivity(intent);
         }
     }
 
