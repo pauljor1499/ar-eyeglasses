@@ -25,9 +25,10 @@ import com.google.ar.sceneform.samples.augmentedfaces.product_list.ProductCatalo
 public class ProductCatalog2 extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener, View.OnClickListener {
 
     public static NotificationBadge catalog_badge;
+    public static CardView item5;
 
     private ProductList prod_list = new ProductList();
-    private CardView item1, item2, item3, item4, item5;
+    private CardView item1, item2, item3, item4;
     private ImageButton cartIcon, menuOption;
     private Intent intent;
     private Button bttn_add;
@@ -192,5 +193,9 @@ public class ProductCatalog2 extends AppCompatActivity implements PopupMenu.OnMe
             default:
                 return false;
         }
+    }
+
+    public void show_card5(){
+        item5.setVisibility(View.VISIBLE);
     }
 }

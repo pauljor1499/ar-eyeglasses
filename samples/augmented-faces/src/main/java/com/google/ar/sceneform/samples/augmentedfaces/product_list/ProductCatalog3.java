@@ -10,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,8 +18,10 @@ import androidx.cardview.widget.CardView;
 
 import com.google.ar.sceneform.samples.augmentedfaces.R;
 import com.google.ar.sceneform.samples.augmentedfaces.cart.CartActivity;
+import com.google.ar.sceneform.samples.augmentedfaces.login.UserLoginActivity;
 import com.google.ar.sceneform.samples.augmentedfaces.product.service.ProductList;
 import com.nex3z.notificationbadge.NotificationBadge;
+import com.google.ar.sceneform.samples.augmentedfaces.product_catalog2.ProductCatalog2;
 
 public class ProductCatalog3 extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener, View.OnClickListener {
 
@@ -28,6 +31,8 @@ public class ProductCatalog3 extends AppCompatActivity implements PopupMenu.OnMe
     private CardView item1, item2, item3, item4, item5;
     private ImageButton cartIcon, menuOption;
     private Intent intent;
+
+    ProductCatalog2 catalog2 = new ProductCatalog2();
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -47,12 +52,8 @@ public class ProductCatalog3 extends AppCompatActivity implements PopupMenu.OnMe
         catalog_badge.setNumber(prod_list.counter);
 
         item1 = (CardView) findViewById(R.id.card_1);
-        item2 = (CardView) findViewById(R.id.card_2);
-        item3 = (CardView) findViewById(R.id.card_3);
 
         item1.setOnClickListener(this);
-        item2.setOnClickListener(this);
-        item3.setOnClickListener(this);
 
         cartIcon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,13 +74,10 @@ public class ProductCatalog3 extends AppCompatActivity implements PopupMenu.OnMe
 
     @Override
     public void onClick(View v) {
-
         if (v.getId() == R.id.card_1) {
-
-        } else if (v.getId() == R.id.card_2) {
-
-        } else if (v.getId() == R.id.card_3) {
-
+            item1.setVisibility(View.GONE);
+            catalog2.show_card5();
+            Toast.makeText(ProductCatalog3.this, "Product successfully added!", Toast.LENGTH_SHORT).show();
         }
     }
 
