@@ -2,6 +2,7 @@ package com.google.ar.sceneform.samples.augmentedfaces.login;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,13 +12,15 @@ import android.widget.Toast;
 
 import com.google.ar.sceneform.samples.augmentedfaces.R;
 import com.google.ar.sceneform.samples.augmentedfaces.product_catalog.ProductCatalog;
+import com.google.ar.sceneform.samples.augmentedfaces.product_catalog2.ProductCatalog2;
 
 public class UserLoginActivity extends AppCompatActivity {
 
     EditText username,password;
-    Button btnlogin;
+    Button btnlogin, btnregistration;
     DBHelper DB;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +29,7 @@ public class UserLoginActivity extends AppCompatActivity {
         username = (EditText) findViewById(R.id.username1);
         password = (EditText) findViewById(R.id.password1);
         btnlogin = (Button) findViewById(R.id.btnsignin1);
+        btnregistration = (Button) findViewById(R.id.bttn_to_register);
         DB = new DBHelper(this);
 
         btnlogin.setOnClickListener(new View.OnClickListener() {
@@ -34,16 +38,22 @@ public class UserLoginActivity extends AppCompatActivity {
                 String user = username.getText().toString();
                 String pass = password.getText().toString();
 
-                if(user.equals("") || pass.equals(""))
+                if(user.equals("") || pass.equals("")) {
                     Toast.makeText(UserLoginActivity.this, "Please Enter all the Fields!", Toast.LENGTH_SHORT).show();
-                else{
+                }else if(user.equals("admin2023") || pass.equals("admin2023")){
+                    username.setText("");
+                    password.setText("");
+                    Intent intent = new Intent(getApplicationContext(), ProductCatalog2.class);
+                    startActivity(intent);
+                    Toast.makeText(getApplicationContext(),"Admin successfully logged in",Toast.LENGTH_SHORT).show();
+                }else{
                     Boolean checkuserpass = DB.checkusernamepassword(user, pass);
                     if(checkuserpass == true){
-                        Toast.makeText(UserLoginActivity.this, "Sign in Successfully!", Toast.LENGTH_SHORT).show();
                         username.setText("");
                         password.setText("");
                         Intent intent = new Intent(getApplicationContext(), ProductCatalog.class);
                         startActivity(intent);
+                        Toast.makeText(UserLoginActivity.this, "Sign in Successfully!", Toast.LENGTH_SHORT).show();
                     }else{
                         Toast.makeText(UserLoginActivity.this, "Invalid Credentials ", Toast.LENGTH_SHORT).show();
                     }
@@ -52,6 +62,13 @@ public class UserLoginActivity extends AppCompatActivity {
             }
         });
 
+        btnregistration.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), UserRegisterActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 }
