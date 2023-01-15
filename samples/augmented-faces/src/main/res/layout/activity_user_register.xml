@@ -58,6 +58,8 @@
         android:layout_height="wrap_content"
         android:text="Register"
         android:layout_marginTop="25dp"
+        android:backgroundTint="#FF5722"
+        android:textColor="#FFFFFF"
         android:layout_below="@+id/repassword"/>
 
     <Button

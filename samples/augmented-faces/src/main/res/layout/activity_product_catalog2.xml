@@ -11,10 +11,22 @@
 
     <include layout="@layout/action_bar1" />
 
-    <ScrollView
+    <Button
+        android:id="@+id/bttn_add_new"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/action_bar1_layout"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="200dp"
+        android:backgroundTint="#FF5722"
+        android:textColor="#FFFFFF"
+        android:text="Add New Product" />
+
+    <ScrollView
+        android:layout_below="@+id/bttn_add_new"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="20dp"
         >
 
         <LinearLayout
@@ -27,7 +39,6 @@
             <GridLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="50dp"
                 android:layout_marginBottom="50dp"
                 android:alignmentMode="alignMargins"
                 android:columnCount="1"

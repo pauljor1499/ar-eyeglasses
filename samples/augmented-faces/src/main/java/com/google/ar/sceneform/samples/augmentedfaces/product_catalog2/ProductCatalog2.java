@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.PopupMenu;
 
@@ -28,6 +29,7 @@ public class ProductCatalog2 extends AppCompatActivity implements PopupMenu.OnMe
     private CardView item1, item2, item3, item4, item5;
     private ImageButton cartIcon, menuOption;
     private Intent intent;
+    private Button bttn_add;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +52,9 @@ public class ProductCatalog2 extends AppCompatActivity implements PopupMenu.OnMe
         item3 = (CardView) findViewById(R.id.card_3);
         item4 = (CardView) findViewById(R.id.card_4);
         item5 = (CardView) findViewById(R.id.card_5);
+        bttn_add = (Button) findViewById(R.id.bttn_add_new);
 
+        item5.setVisibility(View.GONE);
 
         item1.setOnClickListener(this);
         item2.setOnClickListener(this);
@@ -63,6 +67,14 @@ public class ProductCatalog2 extends AppCompatActivity implements PopupMenu.OnMe
             public void onClick(View v) {
                 intent = new Intent(ProductCatalog2.this, CartActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        bttn_add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                item5.setVisibility(View.GONE);
+                item5.setVisibility(View.VISIBLE);
             }
         });
 

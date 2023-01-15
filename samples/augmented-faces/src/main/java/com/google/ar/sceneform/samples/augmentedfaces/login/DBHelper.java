@@ -20,13 +20,15 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase MyDB) {
         MyDB.execSQL("create Table users(username TEXT primary key,password TEXT)");
-
+        MyDB.execSQL("create Table status(prod_status TEXT primary key)");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase MyDB, int i, int i1) {
         MyDB.execSQL("drop Table if exists users");
+        MyDB.execSQL("drop Table if exists status");
     }
+
     public Boolean insertData(String username, String password){
         SQLiteDatabase MyDB = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -37,6 +39,7 @@ public class DBHelper extends SQLiteOpenHelper {
         else
             return true;
     }
+
     public Boolean checkusername(String username){
         SQLiteDatabase MyDB = this.getWritableDatabase();
         Cursor cursor = MyDB.rawQuery("Select * from users where username = ?", new String[] {username});
@@ -53,5 +56,15 @@ public class DBHelper extends SQLiteOpenHelper {
             return true;
         else
             return false;
+    }
+
+    public Boolean updateStatus(String prod_status){
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("prod_status", prod_status);
+        long result = MyDB.insert("status", null, contentValues);
+        if(result==1) return false;
+        else
+            return true;
     }
 }
